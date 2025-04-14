@@ -1,0 +1,66 @@
+create database final_project_dec_2024;
+use final_project_dec_2024;
+
+CREATE TABLE cust_basic_details (
+    c_id INT AUTO_INCREMENT PRIMARY KEY not null,
+    c_name VARCHAR(100) not null,
+    c_address VARCHAR(255) not null,
+    c_phone_number bigint not null
+) AUTO_INCREMENT = 1;
+
+INSERT INTO cust_basic_details (c_name, c_address, c_phone_number)
+VALUES ('Rahul Sen', '45B Lake Road, Kolkata', 9830012345);
+INSERT INTO cust_basic_details (c_name, c_address, c_phone_number)
+VALUES ('rajdeep bhadra', '45B Lake Road, Kolkata', 9830012346);
+
+select * from cust_basic_details;
+
+truncate table cust_basic_details;
+
+CREATE TABLE inventory (
+    p_id INT AUTO_INCREMENT PRIMARY KEY not null,
+    p_name VARCHAR(100) NOT NULL,
+    p_price DECIMAL(10,2) NOT NULL,
+    p_stock_in_hand INT NOT NULL
+) AUTO_INCREMENT = 1;
+
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Basmati Rice 5kg', 420.00, 30);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Wheat Flour 10kg', 350.00, 25);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Sunflower Oil 1L', 145.00, 50);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Mustard Oil 1L', 160.00, 40);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Toor Dal 1kg', 130.00, 60);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Chana Dal 1kg', 90.00, 55);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Moong Dal 1kg', 105.00, 45);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Masoor Dal 1kg', 95.00, 50);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Sugar 1kg', 45.00, 70);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Salt (Tata) 1kg', 28.00, 80);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Turmeric Powder 200g', 35.00, 65);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Red Chili Powder 200g', 60.00, 60);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Coriander Powder 200g', 55.00, 50);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Cumin Seeds 100g', 40.00, 45);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Black Pepper 100g', 65.00, 40);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Tea (Red Label) 500g', 160.00, 30);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Coffee (Nescafe) 100g', 150.00, 25);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Maggie Noodles 70g (Pack of 6)', 72.00, 90);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Biscuits (Parle-G) 800g', 50.00, 100);
+INSERT INTO inventory (p_name, p_price, p_stock_in_hand) VALUES ('Toothpaste (Colgate) 200g', 95.00, 35);
+
+select * from inventory;
+
+CREATE TABLE audit (
+    bill_id INT AUTO_INCREMENT PRIMARY KEY,
+    c_id INT NOT NULL,
+    c_name VARCHAR(100) NOT NULL,
+    total_bill_amount DECIMAL(10,2) NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) AUTO_INCREMENT = 1;
+
+select * from audit;
+
+INSERT INTO audit (c_id, c_name, total_bill_amount)
+VALUES (1, 'Rahul Sen', 1285.50);
+
+truncate table audit;
+
+select c_name,sum(total_bill_amount) from audit 
+group by c_name;
